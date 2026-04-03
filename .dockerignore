@@ -1,0 +1,13 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+**/bin
+**/obj
+frontend/node_modules
+frontend/dist
+api-run.log
+api-run.err.log
+.vscode
+.idea
