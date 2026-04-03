@@ -1,4 +1,4 @@
-# CineTracker
+# CineTrack
 
 CineTrack je full-stack aplikacija za pracenje filmova (watchlist, recenzije, ocene) sa .NET API + MongoDB + React frontend-om.
 
