@@ -49,3 +49,12 @@ Import endpoint (admin):
 ## Napomena
 
 Nemoj commit-ovati `.env` i privatne kljuceve.
+
+## Restore deljene baze iz arhive
+
+Ako si pull-ovao `movietracker.archive`, restore mozes jednim pozivom:
+
+```powershell
+cd scripts
+.\restore.ps1
+```
