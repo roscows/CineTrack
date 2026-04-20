@@ -71,7 +71,7 @@ export function MoviePage({
       <div className="movie-head">
         <Link to="/" className="back-link">Nazad</Link>
         <button className="pill-btn" onClick={onAddToWatchlist} disabled={isInWatchlist || addingToWatchlist}>
-          {isInWatchlist ? 'U wishlisti' : addingToWatchlist ? 'Dodavanje...' : '+ Dodaj na listu'}
+          {isInWatchlist ? 'U watchlisti' : addingToWatchlist ? 'Dodavanje...' : '+ Dodaj na listu'}
         </button>
       </div>
 
@@ -150,3 +150,4 @@ export function MoviePage({
     </section>
   );
 }
+

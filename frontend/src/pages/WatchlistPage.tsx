@@ -15,7 +15,7 @@ export function WatchlistPage({ items, loading, filter, onFilterChange, onToggle
   return (
     <section className="panel">
       <div className="list-head">
-        <h2>Wishlist</h2>
+        <h2>Watchlist</h2>
         <div className="filters-row compact">
           <button className={`chip ${filter === 'all' ? 'active' : ''}`} onClick={() => onFilterChange('all')}>Sve</button>
           <button className={`chip ${filter === 'pending' ? 'active' : ''}`} onClick={() => onFilterChange('pending')}>Za gledanje</button>
@@ -62,3 +62,4 @@ export function WatchlistPage({ items, loading, filter, onFilterChange, onToggle
     </section>
   );
 }
+

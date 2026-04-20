@@ -130,7 +130,7 @@ function App() {
 
         <nav className="main-nav">
           <NavLink to="/" end>Filmovi</NavLink>
-          <NavLink to="/wishlist">Wishlist</NavLink>
+          <NavLink to="/watchlist">Watchlist</NavLink>
           <NavLink to="/reviews">Recenzije</NavLink>
         </nav>
 
@@ -156,7 +156,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeRoute />} />
           <Route path="/movies/:id" element={<MovieRoute auth={auth} />} />
-          <Route path="/wishlist" element={<WatchlistRoute auth={auth} />} />
+          <Route path="/watchlist" element={<WatchlistRoute auth={auth} />} />
           <Route path="/reviews" element={<ReviewsRoute auth={auth} />} />
           <Route path="/profile" element={<ProfileRoute auth={auth} onLogout={clearAuth} onAvatarUpload={handleAvatarUpdated} />} />
           <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
@@ -294,7 +294,7 @@ function MovieRoute({ auth }: { auth: AuthState | null }) {
   const handleAddToWatchlist = async () => {
     if (!movie) return;
     if (!auth) {
-      setReviewError('Dodavanje na wishlist nije uspelo. Potrebna je prijava.');
+      setReviewError('Dodavanje na watchlist nije uspelo. Potrebna je prijava.');
       return;
     }
 
@@ -313,7 +313,7 @@ function MovieRoute({ auth }: { auth: AuthState | null }) {
         return;
       }
 
-      setReviewError('Dodavanje na wishlist nije uspelo.');
+      setReviewError('Dodavanje na watchlist nije uspelo.');
     } finally {
       setAddingToWatchlist(false);
     }
@@ -348,7 +348,7 @@ function WatchlistRoute({ auth }: { auth: AuthState | null }) {
       setItems(data);
     } catch {
       setItems([]);
-      setError('Wishlist nije dostupna. Proveri da li si prijavljen.');
+      setError('Watchlist nije dostupna. Proveri da li si prijavljen.');
     } finally {
       setLoading(false);
     }
@@ -370,7 +370,7 @@ function WatchlistRoute({ auth }: { auth: AuthState | null }) {
   };
 
   if (!auth) {
-    return <AuthRequiredNotice message="Da bi video wishlist, potrebno je da se prijavis." />;
+    return <AuthRequiredNotice message="Da bi video watchlist, potrebno je da se prijavis." />;
   }
 
   return (
@@ -485,7 +485,8 @@ function ReviewsRoute({ auth }: { auth: AuthState | null }) {
       try {
         const data = await fetchUserReviews(auth.userId);
         if (!active) return;
-        setReviews(data);
+        const fallbackAvatar = auth.avatarUrl ?? '';
+        setReviews(data.map((review) => ({ ...review, userAvatarUrl: review.userAvatarUrl || fallbackAvatar })));
       } catch {
         if (!active) return;
         setReviews([]);
@@ -521,3 +522,5 @@ function AuthRequiredNotice({ message }: { message: string }) {
 }
 
 export default App;
+
+

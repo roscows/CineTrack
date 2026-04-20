@@ -1,4 +1,4 @@
-﻿import type { Review } from '../lib/types';
+import type { Review } from '../lib/types';
 
 type ReviewsPageProps = {
   reviews: Review[];
@@ -15,17 +15,24 @@ export function ReviewsPage({ reviews, loading }: ReviewsPageProps) {
 
       {!loading && reviews.length > 0 && (
         <div className="review-list">
-          {reviews.map((review) => (
-            <article className="review-card" key={review.id}>
-              <div className="review-top">
-                <div className="user-dot">{review.username.slice(0, 2).toUpperCase()}</div>
-                <strong>{review.username}</strong>
-                <span className="score">* {review.rating}/10</span>
-              </div>
-              <p>{review.content}</p>
-              <span className="muted small">Komentara: {review.comments.length}</span>
-            </article>
-          ))}
+          {reviews.map((review) => {
+            const avatar = review.userAvatarUrl ?? '';
+            return (
+              <article className="review-card" key={review.id}>
+                <div className="review-top">
+                  {avatar ? (
+                    <img src={avatar} alt={`${review.username} avatar`} className="user-dot user-dot-image" />
+                  ) : (
+                    <div className="user-dot">{review.username.slice(0, 2).toUpperCase()}</div>
+                  )}
+                  <strong>{review.username}</strong>
+                  <span className="score">* {review.rating}/10</span>
+                </div>
+                <p>{review.content}</p>
+                <span className="muted small">Komentara: {review.comments.length}</span>
+              </article>
+            );
+          })}
         </div>
       )}
     </section>

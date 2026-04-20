@@ -277,7 +277,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .star-row { display: flex; gap: 4px; margin-bottom: 10px; }
-.star { border: 0; background: transparent; color: #5a5a5a; font-size: 1.15rem; cursor: pointer; }
+.star { border: 0; background: transparent; color: #5a5a5a; font-size: 1.55rem; line-height: 1; cursor: pointer; }
 .star.on { color: #ffbf49; }
 
 .review-input {
@@ -453,4 +453,5 @@ a { color: inherit; text-decoration: none; }
 .hidden-file-input {
   display: none;
 }
+
 

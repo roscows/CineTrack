@@ -1,27 +1,20 @@
 # CineTrack
 
-CineTrack je full-stack aplikacija za pracenje filmova (watchlist, recenzije, ocene) sa .NET API + MongoDB + React frontend-om.
+CineTrack je aplikacija za pracenje filmova: pregled filmova, watchlist i recenzije.
 
-## Stack
-- Backend: ASP.NET Core 10 + MongoDB.Driver
-- Frontend: React + Vite + TypeScript
-- DB: MongoDB (Docker)
-- API docs: Swagger
+## Pokretanje
 
-## 1) Pokretanje preko Docker-a
-
-Iz root foldera (`D:\MovieTracker`):
+U root folderu projekta (`D:\MovieTracker`) pokreni:
 
 ```powershell
 docker compose up --build -d
 ```
 
-Servisi:
-- API: [http://localhost:5265/swagger](http://localhost:5265/swagger)
-- Mongo Express: [http://localhost:8081](http://localhost:8081)
-- Mongo conn: `mongodb://admin:admin123@localhost:27017/?authSource=admin`
+Posle toga:
+- API + Swagger: http://localhost:5265/swagger
+- Mongo Express: http://localhost:8081
 
-## 2) Frontend razvoj
+## Frontend
 
 ```powershell
 cd frontend
@@ -29,18 +22,30 @@ npm install
 npm run dev
 ```
 
-## 3) Auth i admin
+Frontend je na: http://localhost:5173
 
-- Register: `POST /api/users/register`
-- Login: `POST /api/users/login`
-- Admin create: `POST /api/users/admin` (Admin token)
+## Prijava (seed admin)
 
-Seed admin (dev):
 - email: `admin@movietracker.local`
-- password: `Admin123!`
+- lozinka: `Admin123!`
 
-## 4) Testovi
+## TMDb import
+
+Za import filmova treba TMDb key u `.env` fajlu (root):
+
+```env
+TMDB_API_KEY=ovde_tvoj_kljuc
+```
+
+Zatim ponovo:
 
 ```powershell
-dotnet test D:\MovieTracker\MovieTracker.sln
+docker compose up --build -d
 ```
+
+Import endpoint (admin):
+- `POST /api/admin/import/tmdb`
+
+## Napomena
+
+Nemoj commit-ovati `.env` i privatne kljuceve.
